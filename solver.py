@@ -18,7 +18,7 @@ def next_letter(letters1, letters2, len_word, len_word2):
             word1 += i
 
     for i in letters2:
-        if i != '0.0':
+        if i != '0.0' and i != '1.0':
             word2 += i
 
     posible_letter = []
@@ -127,6 +127,9 @@ puzzle = get_puzzel()
 across_words = word_map_across(puzzle)
 down_words = word_map_down(puzzle)
 
+print(across_words)
+print(down_words)
+
 puzzle = puzzle.astype('str')
 puzzle[0,:4] = ['t','i','m','e']
 
@@ -149,7 +152,8 @@ while result is None:
                 if puzzle[i, j] == '1.0':
 
                     # TODO: problem with the second input
-                    letter = next_letter(puzzle_copy[i, count0:j], puzzle_copy[count1:i, j],
+                    print(down_words[i, j])
+                    letter = next_letter(puzzle_copy[i, count0:j], puzzle_copy[:int(down_words[i, j]), j],
                                          across_words[i, j], down_words[i, j])[0]
 
                     count3 += 1
